@@ -10,7 +10,7 @@ output:
 ### Loading and preprocessing the data
 
 1. Load the data file:
-```{r loadblock, echo=TRUE, eval=TRUE}
+```{r echo=TRUE}
 data <- read.csv('activity.csv', stringsAsFactors = FALSE)
 ```
 
@@ -31,7 +31,7 @@ dat <- subset(data, !is.na(steps))  # subset out all the complete data
 ### What is mean total number of steps taken per day?
 
 1. Make a histogram of the total number of steps taken each day:
-```{r histogram1block, echo=TRUE, eval=TRUE}
+```{r echo=TRUE}
 library(ggplot2)
 day_steps <- data.frame(character(), numeric(), stringsAsFactors=FALSE)
 for (day in unique(dat$date)) {
@@ -44,14 +44,14 @@ colnames(day_steps) <- c("date", "total_steps")
 
 qplot(x = total_steps, data = day_steps, 
       main = "Histogram of the Total # of Steps per Day",
-      xlab = "# Steps per Day",
-      ylab = "# Days",
+      xlab = "# Steps per Day ",
+      ylab = "# Days ",
       ) + geom_histogram(colour = "blue",
                          fill = "green") + scale_y_continuous(breaks = c(0:40))
 ```
 
 2. Calculate and report the mean and median total number of steps taken per day:
-```{r numsteps1block, echo=TRUE, eval=TRUE}
+```{r echo=TRUE}
 mean_steps = mean(day_steps$total_steps)
 median_steps = median(day_steps$total_steps)
 # Mean
@@ -65,7 +65,7 @@ while the median number of steps taken per day is about `r median_steps`.
 ### What is the average daily activity pattern?
 
 1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis):
-```{r timeseries1block, echo=TRUE, eval=TRUE}
+```{r echo=TRUE}
 interval_means <- data.frame(minutes = numeric(), mean_steps = numeric())
 for (minute in unique(dat$minutes)) {
     this_mean <- mean(subset(dat, minutes == minute, 
@@ -75,12 +75,12 @@ for (minute in unique(dat$minutes)) {
 colnames(interval_means) <- c("minutes", "mean_steps")
 
 plot(interval_means$minutes, interval_means$mean_steps, type="l", 
-     xlab="Minutes", ylab="Ave # Steps", 
+     xlab="Minutes ", ylab="Ave # Steps ", 
      main="Average Steps Per 5-Minute Interval")
 ```
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
-```{r maxstepsblock, echo=TRUE, eval=TRUE}
+```{r echo=TRUE}
 max_steps <- max(interval_means$mean_steps)
 max_activity_time <- subset(interval_means, mean_steps == max_steps, 
                             select = minutes)$minutes
@@ -95,7 +95,7 @@ The maximum activity seems to occur at the interval beginning at `r max_activity
 
 Since the original dataframe was *data*, and removing all the NA rows yields dataframe *dat*, it
 follows that the number of rows with NA is the difference in length of these two dataframes.  
-```{r numbNAblock, echo=TRUE, eval=TRUE}
+```{r echo=TRUE}
 num_NA <- nrow(data) - nrow(dat)
 ```
 The number of rows containing NA is `r num_NA`.
@@ -106,7 +106,7 @@ The number of rows containing NA is `r num_NA`.
 To impute the missing values, we'll replace each NA with the mean for that 5-minute interval accross all days for which this data is not missing.
 
 3. Create a new dataset that is equal to the original dataset but with the missing data filled in:
-```{r imputeblock, echo=TRUE, eval=TRUE}
+```{r echo=TRUE}
 data_imp = data
 for (i in c(1:nrow(data_imp))) {
     if (is.na(data_imp[i, 1])) {
@@ -118,7 +118,7 @@ for (i in c(1:nrow(data_imp))) {
 4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 Now we repeat the previous analysis, but this time with the imputed missing values.
-```{r recomputeblock, echo=TRUE, eval=TRUE}
+```{r echo=TRUE}
 day_steps_imp <- data.frame(character(), numeric(), stringsAsFactors=FALSE)
 for (day in unique(data_imp$date)) {
     this_sum <- sum(subset(data_imp, date == day,
@@ -130,8 +130,8 @@ colnames(day_steps_imp) <- c("date", "total_steps")
 
 qplot(x = total_steps, data = day_steps_imp, 
       main = "Histogram of the Total # of Steps per Day with Imputed NAs",
-      xlab = "# Steps per Day",
-      ylab = "# Days",
+      xlab = "# Steps per Day ",
+      ylab = "# Days ",
       ) + geom_histogram(colour = "blue",
                          fill = "green") + scale_y_continuous(breaks = c(0:40))
 # Mean and median:
@@ -149,7 +149,7 @@ The new means are identical to the old ones, as one would expect, since the impu
 ### Are there differences in activity patterns between weekdays and weekends?
 
 1. Create a new factor variable in the dataset with two levels -- "weekday" and "weekend" indicating whether a given date is a weekday or weekend day:
-```{r weekpartblock, echo=TRUE, eval=TRUE}
+```{r echo=TRUE}
 data_imp$day_type <- 'weekday'
 weekend <- (weekdays(as.Date(data_imp$date)) == 'Saturday') |
            (weekdays(as.Date(data_imp$date)) == 'Sunday')
@@ -189,12 +189,12 @@ par(mfrow=c(2, 1))
 
 plot(interval_weekday_means$minutes, interval_weekday_means$mean_steps, type="l", 
      ylim = c(minY, maxY),
-     xlab = "Minutes", ylab = "Ave # Steps", 
+     xlab = "Minutes ", ylab = "Ave # Steps ", 
      main = "Weekday Average Steps Per 5-Minute Interval")
 
 plot(interval_weekend_means$minutes, interval_weekend_means$mean_steps, type="l", 
      ylim = c(minY, maxY),
-     xlab = "Minutes", ylab = "Ave # Steps", 
+     xlab = "Minutes ", ylab = "Ave # Steps ", 
      main = "Weekend Average Steps Per 5-Minute Interval")
 
 weekday_mean <- mean(interval_weekday_means$mean_steps)

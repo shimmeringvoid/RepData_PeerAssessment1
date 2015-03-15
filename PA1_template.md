@@ -47,8 +47,8 @@ colnames(day_steps) <- c("date", "total_steps")
 
 qplot(x = total_steps, data = day_steps, 
       main = "Histogram of the Total # of Steps per Day",
-      xlab = "# Steps per Day",
-      ylab = "# Days",
+      xlab = "# Steps per Day ",
+      ylab = "# Days ",
       ) + geom_histogram(colour = "blue",
                          fill = "green") + scale_y_continuous(breaks = c(0:40))
 ```
@@ -58,7 +58,7 @@ qplot(x = total_steps, data = day_steps,
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk histogram1block](figure/histogram1block-1.png) 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
 
 2. Calculate and report the mean and median total number of steps taken per day:
 
@@ -98,11 +98,11 @@ for (minute in unique(dat$minutes)) {
 colnames(interval_means) <- c("minutes", "mean_steps")
 
 plot(interval_means$minutes, interval_means$mean_steps, type="l", 
-     xlab="Minutes", ylab="Ave # Steps", 
+     xlab="Minutes ", ylab="Ave # Steps ", 
      main="Average Steps Per 5-Minute Interval")
 ```
 
-![plot of chunk timeseries1block](figure/timeseries1block-1.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -163,8 +163,8 @@ colnames(day_steps_imp) <- c("date", "total_steps")
 
 qplot(x = total_steps, data = day_steps_imp, 
       main = "Histogram of the Total # of Steps per Day with Imputed NAs",
-      xlab = "# Steps per Day",
-      ylab = "# Days",
+      xlab = "# Steps per Day ",
+      ylab = "# Days ",
       ) + geom_histogram(colour = "blue",
                          fill = "green") + scale_y_continuous(breaks = c(0:40))
 ```
@@ -174,7 +174,7 @@ qplot(x = total_steps, data = day_steps_imp,
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk recomputeblock](figure/recomputeblock-1.png) 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
 
 ```r
 # Mean and median:
@@ -245,12 +245,12 @@ par(mfrow=c(2, 1))
 
 plot(interval_weekday_means$minutes, interval_weekday_means$mean_steps, type="l", 
      ylim = c(minY, maxY),
-     xlab = "Minutes", ylab = "Ave # Steps", 
+     xlab = "Minutes ", ylab = "Ave # Steps ", 
      main = "Weekday Average Steps Per 5-Minute Interval")
 
 plot(interval_weekend_means$minutes, interval_weekend_means$mean_steps, type="l", 
      ylim = c(minY, maxY),
-     xlab = "Minutes", ylab = "Ave # Steps", 
+     xlab = "Minutes ", ylab = "Ave # Steps ", 
      main = "Weekend Average Steps Per 5-Minute Interval")
 ```
 
