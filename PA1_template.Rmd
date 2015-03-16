@@ -31,7 +31,7 @@ dat <- subset(data, !is.na(steps))  # subset out all the complete data
 ### What is mean total number of steps taken per day?
 
 1. Make a histogram of the total number of steps taken each day:
-```{r echo=TRUE}
+```{r echo=TRUE, messages=FALSE}
 library(ggplot2)
 day_steps <- data.frame(character(), numeric(), stringsAsFactors=FALSE)
 for (day in unique(dat$date)) {
@@ -54,12 +54,13 @@ qplot(x = total_steps, data = day_steps,
 ```{r echo=TRUE}
 mean_steps = mean(day_steps$total_steps)
 median_steps = median(day_steps$total_steps)
+
 # Mean
 mean_steps
 # Median
 median_steps
 ```
-The mean number of steps taken per day is about `r mean_steps`, 
+The mean number of steps taken per day is about `r round(mean_steps)`, 
 while the median number of steps taken per day is about `r median_steps`.
 
 ### What is the average daily activity pattern?
@@ -118,7 +119,7 @@ for (i in c(1:nrow(data_imp))) {
 4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 Now we repeat the previous analysis, but this time with the imputed missing values.
-```{r echo=TRUE}
+```{r echo=TRUE, messages=FALSE}
 day_steps_imp <- data.frame(character(), numeric(), stringsAsFactors=FALSE)
 for (day in unique(data_imp$date)) {
     this_sum <- sum(subset(data_imp, date == day,
@@ -137,7 +138,7 @@ qplot(x = total_steps, data = day_steps_imp,
 # Mean and median:
 mean_steps_imp = mean(day_steps_imp$total_steps)
 median_steps_imp = median(day_steps_imp$total_steps)
-#
+
 # Mean
 mean_steps_imp
 # Median
@@ -199,6 +200,7 @@ plot(interval_weekend_means$minutes, interval_weekend_means$mean_steps, type="l"
 
 weekday_mean <- mean(interval_weekday_means$mean_steps)
 weekend_mean <- mean(interval_weekend_means$mean_steps)
+
 # Mean
 weekday_mean
 # Median

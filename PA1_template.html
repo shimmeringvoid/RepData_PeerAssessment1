@@ -266,6 +266,7 @@ qplot(x = total_steps, data = day_steps,
 
 <pre><code class="r">mean_steps = mean(day_steps$total_steps)
 median_steps = median(day_steps$total_steps)
+
 # Mean
 mean_steps
 </code></pre>
@@ -280,7 +281,7 @@ median_steps
 <pre><code>## [1] 10765
 </code></pre>
 
-<p>The mean number of steps taken per day is about 1.0766189 &times; 10<sup>4</sup>, 
+<p>The mean number of steps taken per day is about 1.0766 &times; 10<sup>4</sup>, 
 while the median number of steps taken per day is about 10765.</p>
 
 <h3>What is the average daily activity pattern?</h3>
@@ -384,7 +385,7 @@ qplot(x = total_steps, data = day_steps_imp,
 <pre><code class="r"># Mean and median:
 mean_steps_imp = mean(day_steps_imp$total_steps)
 median_steps_imp = median(day_steps_imp$total_steps)
-#
+
 # Mean
 mean_steps_imp
 </code></pre>
@@ -461,6 +462,7 @@ plot(interval_weekend_means$minutes, interval_weekend_means$mean_steps, type=&qu
 
 <pre><code class="r">weekday_mean &lt;- mean(interval_weekday_means$mean_steps)
 weekend_mean &lt;- mean(interval_weekend_means$mean_steps)
+
 # Mean
 weekday_mean
 </code></pre>
